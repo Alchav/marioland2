@@ -8,13 +8,13 @@ INCBIN "baserom.gb", $0000, $0028 - $0000
 	pop hl
 	ld e, a
 	ld d, 0
-	add de
+	add hl, de
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
 	push de
 	pop hl
-	jp [hl]
+	jp hl
 
 UnknownData_0x0034:
 INCBIN "baserom.gb", $0034, $0040 - $0034
@@ -328,7 +328,7 @@ UnknownCall_0x0361:
 	sla a
 	ld e, a
 	ld d, 0
-	add de
+	add hl, de
 	ld a, [hli]
 	ld e, a
 	ld a, [hl]
@@ -387,7 +387,7 @@ Read_Level_Data: ;$0386
 	ld e, a
 	ld d, 0
 	ld hl, $03E1
-	add de
+	add hl, de
 	ld a, [hli]
 	ld [sBGPalette], a
 	ld a, [hli]
@@ -451,7 +451,7 @@ UnknownRJump_0x040A:
 	and $0F
 	swap a
 	ld e, a
-	add de
+	add hl, de
 	ld de, $A960
 	ld b, 48
 
@@ -484,7 +484,7 @@ UnknownRJump_0x043F:
 	and $0F
 	swap a
 	ld e, a
-	add de
+	add hl, de
 	ld de, $A900
 	ld b, 48
 
@@ -526,7 +526,7 @@ UnknownRJump_0x049C:
 	ld a, [sCurLevel]
 	ld e, a
 	ld d, 0
-	add de
+	add hl, de
 	ld a, [hl] ;check level autoscroll properties
 	ld [sAutoScroll], a
 	ld a, [$A257]
@@ -542,7 +542,7 @@ UnknownRJump_0x04DD:
 	ld a, [sCurLevel]
 	ld e, a
 	ld d, 0
-	add de
+	add hl, de
 	ld a, [hl] ;check level space physics
 	ld [sMoonPhysics], a
 	ld a, [$FF00+$9B]
@@ -626,7 +626,7 @@ UnknownRJump_0x0598:
 	ld a, [sCurLevel]
 	ld e, a
 	ld d, 0
-	add de
+	add hl, de
 	ld a, [hl] ;level properties unknown
 	ld [$A2D9], a
 	xor a
@@ -724,7 +724,7 @@ LoadMarioGFX: ;$0669
 	ld hl, $360A
 	ld e, a
 	ld d, 0
-	add de
+	add hl, de
 	ld a, [hl]
 	ld [$A2D2], a
 	and $0F
@@ -771,7 +771,7 @@ UnknownRJump_0x06C0:
 	ld e, a
 	ld d, 0
 	ld hl, $0763
-	add de
+	add hl, de
 	ld a, [hli]
 	ld e, a
 	ld a, [hl]
@@ -792,7 +792,7 @@ UnknownRJump_0x06C0:
 	ld d, a
 	ld e, 0
 	ld hl, $7000
-	add de
+	add hl, de
 	ld bc, $0300
 	ld de, $8800
 	call CopyMem
@@ -802,7 +802,7 @@ UnknownRJump_0x06C0:
 	sla a
 	ld e, a
 	ld d, 0
-	add de
+	add hl, de
 	ld a, [hli] ;prepare bank switch
 	ld [$A24E], a
 	ld [$2100], a
@@ -822,7 +822,7 @@ UnknownRJump_0x06C0:
 	sla a
 	ld e, a
 	ld d, 0
-	add de
+	add hl, de
 	ld a, [hli] ;prepare bank switch
 	ld [$A24E], a
 	ld [$2100], a
@@ -840,7 +840,7 @@ UnknownRJump_0x06C0:
 	ld a, [sCurLevel]
 	ld e, a
 	ld d, 0
-	add de
+	add hl, de
 	ld a, [hl]
 	inc a
 	ld [$A299], a
@@ -1060,14 +1060,14 @@ UnknownCall_0x0969:
 	rl d
 	sla e
 	rl d
-	add de
+	add hl, de
 	ld a, [$FF00+$CE]
 	and $F0
 	swap a
 	sla a
 	ld e, a
 	ld d, 0
-	add de
+	add hl, de
 	ld a, l
 	ld [$FF00+$AA], a
 	ld a, h
@@ -1106,7 +1106,7 @@ UnknownRJump_0x09BE:
 	sla e
 	rl d
 	ld hl, $A600
-	add de
+	add hl, de
 	ld a, [hli]
 	ld [$A208], a
 	ld a, [hli]
@@ -1178,14 +1178,14 @@ UnknownCall_0x0A35:
 	rl d
 	sla e
 	rl d
-	add de
+	add hl, de
 	ld a, [$FF00+$CE]
 	and $F0
 	swap a
 	sla a
 	ld e, a
 	ld d, 0
-	add de
+	add hl, de
 	ld a, l
 	ld [$FF00+$AA], a
 	ld a, h
@@ -1224,7 +1224,7 @@ UnknownRJump_0x0A8A:
 	sla e
 	rl d
 	ld hl, $A600
-	add de
+	add hl, de
 	ld a, [hli]
 	ld [$A208], a
 	ld a, [hli]
@@ -1298,7 +1298,7 @@ ScrollLevelMap: ;$0AFB
 	ld a, [de]
 	ld [hl], a
 	ld bc, $001F
-	add bc
+	add hl, bc
 	ld a, h
 	and $9B
 	ld h, a
@@ -1340,7 +1340,7 @@ UnknownRJump_0x0B39:
 	ld e, a
 	ld d, 0
 	ld hl, $A960
-	add de
+	add hl, de
 	ld a, [hl]
 	ld [$FF00+$98], a
 	ld a, [sAutoScroll]
@@ -1874,7 +1874,7 @@ UnknownCall_0x0F0B:
 	ld e, a
 	ld d, 0
 	ld hl, $A900
-	add de
+	add hl, de
 	ld a, [hl]
 	ld [$A28E], a
 	xor a
@@ -2716,7 +2716,7 @@ UnknownRJump_0x1580:
 	ld a, [sVVelocityIndex]
 	ld e, a
 	ld d, 0
-	add de
+	add hl, de
 	ld a, [hl]
 	add 16
 	ld b, a
@@ -3078,7 +3078,7 @@ UnknownRJump_0x1845:
 	add e
 	ld e, a
 	ld d, 0
-	add de
+	add hl, de
 	ld a, [hl]
 	ld b, a
 	ld a, [$A202]
@@ -3498,7 +3498,7 @@ UnknownRJump_0x1DC7:
 	ld a, 255
 	ld [hli], a
 	ld [hl], a
-	add de
+	add hl, de
 	ld [hli], a
 	ld [hl], a
 	ret
@@ -3526,7 +3526,7 @@ UnknownRJump_0x1DF0:
 	ld a, 127
 	ld [hli], a
 	ld [hl], a
-	add de
+	add hl, de
 	ld [hli], a
 	ld [hl], a
 	ret
@@ -3824,7 +3824,7 @@ UnknownCall_0x200C:
 	ld hl, $97E0
 
 UnknownRJump_0x2018:
-	add de
+	add hl, de
 	sub b
 	jr nc, UnknownRJump_0x2018
 	ld a, [$FF00+$B9]
@@ -3901,7 +3901,7 @@ UnknownCall_0x20A4:
 	sla e
 	rl d
 	ld hl, $4125
-	add de
+	add hl, de
 	ld a, [hli]
 	ld e, a
 	ld a, [hl]
@@ -4418,7 +4418,7 @@ UnknownCall_0x25AF:
 	sla a
 	ld e, a
 	ld d, 0
-	add de
+	add hl, de
 	ld a, [hli] ;prepare bank switch
 	ld [$2100], a
 	ld hl, $2699
@@ -4427,7 +4427,7 @@ UnknownCall_0x25AF:
 	sla a
 	ld e, a
 	ld d, 0
-	add de
+	add hl, de
 	ld a, [hli]
 	ld e, a
 	ld a, [hl]
@@ -4450,7 +4450,7 @@ UnknownRJump_0x2614:
 	inc a
 	ld e, a
 	ld d, 0
-	add de
+	add hl, de
 	ld a, [hli] ;prepare bank switch
 	ld [$2100], a
 	ld hl, $269B
@@ -4459,7 +4459,7 @@ UnknownRJump_0x2614:
 	sla a
 	ld e, a
 	ld d, 0
-	add de
+	add hl, de
 	ld a, [hli]
 	ld e, a
 	ld a, [hl]
@@ -4484,7 +4484,7 @@ UnknownRJump_0x264F:
 	sla a
 	ld e, a
 	ld d, 0
-	add de
+	add hl, de
 	ld a, [hli]
 	ld e, a
 	ld a, [hl]
@@ -4881,7 +4881,7 @@ UnknownCall_0x2934:
 	swap a
 	ld e, a
 	ld d, 0
-	add de
+	add hl, de
 	ld c, 0
 	ld de, $A840
 	ld b, 64
@@ -5298,7 +5298,7 @@ UnknownRJump_0x2D8C:
 UnknownRJump_0x2DA2:
 	pop hl
 	ld de, $0020
-	add de
+	add hl, de
 	ld a, h
 	cp $AF
 	jr nz, UnknownRJump_0x2D8C
@@ -5607,7 +5607,7 @@ UnknownRJump_0x2F97:
 UnknownRJump_0x2FA3:
 	pop hl
 	ld de, $0020
-	add de
+	add hl, de
 	ld a, h
 	cp $AF
 	jr nz, UnknownRJump_0x2F97
@@ -5671,7 +5671,7 @@ UnknownRJump_0x2FF0:
 UnknownRJump_0x2FFC:
 	pop hl
 	ld de, $0020
-	add de
+	add hl, de
 	ld a, h
 	cp $AF
 	jr nz, UnknownRJump_0x2FF0
@@ -5785,7 +5785,7 @@ UnknownRJump_0x3098:
 	ld e, a
 	ld d, 0
 	ld hl, $A960
-	add de
+	add hl, de
 	ld a, [hl]
 	ld [$FF00+$98], a
 	ld a, [$A223]
@@ -5822,7 +5822,7 @@ UnknownRJump_0x30D9:
 	ld e, a
 	ld d, 0
 	ld hl, $A960
-	add de
+	add hl, de
 	ld a, [hl]
 	ld [$FF00+$98], a
 	ld a, [$A223]
@@ -5886,7 +5886,7 @@ UnknownCall_0x315C:
 	ld a, [sVVelocityIndex]
 	ld c, a
 	ld b, 0
-	add bc
+	add hl, bc
 	ld a, [hl]
 	ld b, a
 	ld a, [$FF00+$C0]
@@ -5974,7 +5974,7 @@ UnknownRJump_0x3252:
 	and a
 	call nz, UnknownCall_0x3261
 	ld bc, $0010
-	add bc
+	add hl, bc
 	ld a, l
 	cp $A0
 	jr nz, UnknownRJump_0x3252
@@ -6059,7 +6059,7 @@ UnknownRJump_0x32D9:
 	and a
 	jr z, UnknownRJump_0x32E7
 	ld bc, $0010
-	add bc
+	add hl, bc
 	ld a, l
 	cp $A0
 	jr nz, UnknownRJump_0x32D9
@@ -6108,7 +6108,7 @@ UnknownRJump_0x331F:
 	and a
 	call nz, UnknownCall_0x332E
 	ld bc, $0010
-	add bc
+	add hl, bc
 	ld a, l
 	cp $A0
 	jr nz, UnknownRJump_0x331F
@@ -6172,7 +6172,7 @@ UnknownRJump_0x3386:
 	ld c, a
 	ld hl, $3439
 	ld b, 0
-	add bc
+	add hl, bc
 	ld a, [hl]
 	ld b, a
 	ld a, c
@@ -6557,7 +6557,7 @@ UnknownCall_0x3873:
 	ld [$A298], a
 	ld e, 0
 	ld hl, $6680
-	add de
+	add hl, de
 	ld a, [$A2CD]
 	inc a
 	and $03
@@ -6567,7 +6567,7 @@ UnknownCall_0x3873:
 	swap a
 	ld e, a
 	ld d, 0
-	add de
+	add hl, de
 	ld de, $9200
 	ld b, 64
 
@@ -7089,7 +7089,7 @@ INCBIN "baserom.gb", $3D42, $3E00 - $3D42
 UnknownCall_0x3E00:
 	ld [$A24E], a
 	ld [$3000], a
-	jp [hl]
+	jp hl
 
 UnknownJump_0x3E07:
 	ld a, 15
