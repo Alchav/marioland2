@@ -11222,8 +11222,12 @@ UnknownJump_0x3037D:
 	and a
 	ret nz
 	ld a, [sEasyMode]
-	xor $FF
-	and $01
+	;xor $FF
+	;and $01
+	nop
+	nop
+	nop
+	nop
 	ld [sEasyMode], a
 	ld a, [sMarioDirection]
 	xor $FF
@@ -12334,31 +12338,66 @@ UnknownJump_0x3C169:
 	ld a, [$A7A0]
 	or a
 	ret nz
-	ld a, [$A840]
-	ld hl, $650E
-	ld d, 0
-	ld e, a
-	add hl, de
-	ld a, [hl]
-	ld e, a
-	ld hl, $A848
-	add hl, de
-	ld c, [hl]
-	bit 7, c
-	jr z, UnknownRJump_0x3C1A2
-	ld a, e
-	cp $05
-	ret z
-	cp $09
-	ret z
-	cp $0E
-	ret z
-	cp $17
-	ret z
-	cp $1D
-	ret z
-	cp $11
-	ret z
+	;ld a, [$A840]
+	;ld hl, $650E
+	;ld d, 0
+	;ld e, a
+	;add hl, de
+	;ld a, [hl]
+	;ld e, a
+	;ld hl, $A848
+	;add hl, de
+	;ld c, [hl]
+	;bit 7, c
+	jr UnknownRJump_0x3C1A2
+	;ld a, e
+	;cp $05
+	;ret z
+	;cp $09
+	;ret z
+	;cp $0E
+	;ret z
+	;cp $17
+	;ret z
+	;cp $1D
+	;ret z
+	;cp $11
+	;ret z
+hippocheck:
+    ld a, [sCurLevel]
+    cp $11
+    ret nz
+    ;ld a, [$A2B4]
+    ;cp $FF
+    ;ret nz
+    ld a, [$A867]
+    set 6, a
+    ld [$a867], a
+
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
 
 UnknownRJump_0x3C1A2:
 	xor a
@@ -12549,7 +12588,8 @@ UnknownCall_0x3C32D:
 	add hl, de
 	ld a, [hl]
 	bit 7, a
-	ret nz
+	;ret nz
+	ret ; never auto move to next level
 	ld e, b
 	ld hl, $6591
 	add hl, de
@@ -12657,7 +12697,7 @@ UnknownCall_0x3C38C:
 	cp $75
 	call z, UnknownCall_0x3C29A
 	ld a, [$A840]
-	cp $11
+	cp $11 ; checked
 	call z, UnknownCall_0x3C2B2
 	ld a, [$A840]
 	cp $02
@@ -12885,7 +12925,7 @@ UnknownRJump_0x3C60B:
 	jp z, UnknownJump_0x3F3F0
 	cp $71
 	jp z, UnknownJump_0x3F3B9
-	cp $11
+	cp $11 ; checked
 	jr nz, UnknownRJump_0x3C66C
 	ld a, [$A68B]
 	or a
@@ -17777,7 +17817,7 @@ UnknownCall_0x3EEF0:
 	ld a, [$A2B4]
 	or a
 	jr nz, UnknownRJump_0x3EF25
-	set 7, [hl]
+	set 6, [hl] ; location check
 	res 3, [hl]
 	call UnknownCall_0x2934
 	ret
@@ -17904,7 +17944,7 @@ UnknownRJump_0x3EFB2:
 	jp z, UnknownJump_0x3C6D7
 	cp $0E
 	jp z, UnknownJump_0x3C724
-	cp $11
+	cp $11 ; checked
 	jp z, UnknownJump_0x3C736
 	cp $17
 	jp z, UnknownJump_0x3C750
@@ -17937,14 +17977,15 @@ UnknownRJump_0x3F024:
 	or a
 	jr nz, UnknownRJump_0x3F03D
 	ld a, [$A848]
-	set 7, a
-	ld [$A848], a
+	set 6, a
+    ;ld [$A848], a
 	ld a, 20
 	ld [$A840], a
 	call UnknownCall_0x3EEA4
 
 UnknownJump_0x3F03D:
 UnknownRJump_0x3F03D:
+    call hippocheck
 	call UnknownCall_0x3F156
 	call UnknownCall_0x2934
 	ld a, 12
@@ -27686,22 +27727,33 @@ UnknownCall_0x60917:
 	ld [$A7AC], a
 	ld a, [$A7A8]
 	cp $03
-	jp nc, UnknownJump_0x60939
+	jr nc, UnknownJump_0x60939
 	ld hl, $4C51
-	ld b, 0
-	ld c, a
-	add hl, bc
+	;ld b, 0
+	;ld c, a
+	;add hl, bc
+	add a, l
+	ld l, a
 	ld a, [hl]
+	cp $02
+.Archipelago_Get_Carrot_C_0
+	ret z
+.Archipelago_Get_Mushroom_C_0
+	ret c
+	cp $03
+.Archipelago_Get_Fire_Flower_C_0
+	ret z
 	ld [$A7AC], a
 	ld a, 20
 	ld [$A470], a
 	ret
+	nop
 
 UnknownJump_0x60939:
 	ld a, 9
 	ld [$A460], a
-	ld a, [$A7A8]
-	cp $03
+	;ld a, [$A7A8]
+	;cp $03
 	jr nz, UnknownRJump_0x60955
 	ld a, [$A22C]
 	add 1
@@ -28300,21 +28352,33 @@ UnknownCall_0x60DC7:
 	cp $01
 	jr nz, UnknownRJump_0x60DE1
 	ld a, 1
-	ld [sCurPowerup], a
+.Archipelago_Get_Mushroom_B_0
+	;ld [sCurPowerup], a
+	nop
+	nop
+	nop
 	jp UnknownJump_0x60E7D
 
 UnknownRJump_0x60DE1:
 	cp $02
 	jr nz, UnknownRJump_0x60DED
 	ld a, 2
-	ld [sCurPowerup], a
+.Archipelago_Get_Carrot_B_0
+	;ld [sCurPowerup], a
+	nop
+	nop
+	nop
 	jp UnknownJump_0x60E7D
 
 UnknownRJump_0x60DED:
 	cp $03
 	jr nz, UnknownRJump_0x60DF9
 	ld a, 3
-	ld [sCurPowerup], a
+.Archipelago_Get_Fire_Flower_B_0
+	;ld [sCurPowerup], a
+	nop
+	nop
+	nop
 	jp UnknownJump_0x60E7D
 
 UnknownRJump_0x60DF9:
@@ -29656,7 +29720,7 @@ INCBIN "gfx/enemies/turtlezoneboss.2bpp"
 
 INCBIN "baserom.gb", $76600, $78000 - $76600
 
-
+; 77777 = auth
 SECTION "bank1E", ROMX, BANK[$1E]
 
 GFX_TilesetSpaceZone: ;$78000

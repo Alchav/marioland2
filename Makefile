@@ -10,5 +10,5 @@ compare: baserom.gb sml2.gb
 	rgbasm -o $@ $<
 
 sml2.gb: $(objects)
-	rgblink -o $@ $^
+	rgblink -n ml2.sym -o $@ $^
 	rgbfix -v $@

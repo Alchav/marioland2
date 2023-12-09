@@ -544,7 +544,11 @@ UnknownRJump_0x04DD:
 	ld d, 0
 	add hl, de
 	ld a, [hl] ;check level space physics
-	ld [sMoonPhysics], a
+.Archipelago_Space_Physics_0
+	;ld [sMoonPhysics], a
+	nop
+	nop
+	nop
 	ld a, [$FF00+$9B]
 	inc a
 	ld [$FF00+$9B], a
@@ -5940,7 +5944,9 @@ UnknownCall_0x319F:
 UnknownRJump_0x31C2:
 	xor a
 	ld [$A224], a
-	ld a, 1
+.Archipelago_Get_Hurt_To_Big_Mario_1
+	ld a, 0
+	;ld a, 1
 	ld [sCurPowerup], a
 	ld a, 128
 	ld [$A217], a
@@ -6275,8 +6281,12 @@ UnknownCall_0x3451:
 	ret z
 	cp $01
 	jr nz, UnknownRJump_0x3467
-	ld a, 1
-	ld [sCurPowerup], a
+	ld a, 1 ;get mushroom
+.Archipelago_Get_Mushroom_A_0
+	;ld [sCurPowerup], a
+	nop
+	nop
+	nop
 	ld a, 20
 	ld [$A470], a
 	jp UnknownJump_0x3534
@@ -6285,7 +6295,11 @@ UnknownRJump_0x3467:
 	cp $02
 	jr nz, UnknownRJump_0x3478
 	ld a, 3
-	ld [sCurPowerup], a
+.Archipelago_Get_Fire_Flower_A_0
+	;ld [sCurPowerup], a
+	nop
+	nop
+	nop
 	ld a, 20
 	ld [$A470], a
 	jp UnknownJump_0x3534
@@ -6294,7 +6308,11 @@ UnknownRJump_0x3478:
 	cp $03
 	jr nz, UnknownRJump_0x3489
 	ld a, 2
-	ld [sCurPowerup], a
+.Archipelago_Get_Carrot_A_0
+	;ld [sCurPowerup], a
+	nop
+	nop
+	nop
 	ld a, 20
 	ld [$A470], a
 	jp UnknownJump_0x3534
@@ -6312,11 +6330,17 @@ UnknownRJump_0x3489:
 	ld [$A279], a
 
 UnknownRJump_0x349D:
-	ld a, 4
+.Archipelago_Invincibility_Star_A_1
+	;ld a, 4
+	ld a, 0
 	ld [$A271], a
-	ld a, 64
+.Archipelago_Invincibility_Star_B_1
+	;ld a, 64
+	ld a, 0
 	ld [$A272], a
-	ld a, 4
+.Archipelago_Invincibility_Star_C_1
+	;ld a, 4
+	ld a, 0
 	ld [$A468], a
 	jp UnknownJump_0x3539
 
@@ -6350,7 +6374,10 @@ UnknownRJump_0x34D9:
 	ld a, 20
 	ld [$A470], a
 	ld a, [sMoonPhysics]
-	set 2, a
+.Archipelago_Enable_Bubble_0
+	;set 2, a
+	nop
+	nop
 	ld [sMoonPhysics], a
 	jr UnknownRJump_0x3539
 
