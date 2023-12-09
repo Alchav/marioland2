@@ -12338,17 +12338,17 @@ UnknownJump_0x3C169:
 	ld a, [$A7A0]
 	or a
 	ret nz
-	;ld a, [$A840]
-	;ld hl, $650E
-	;ld d, 0
-	;ld e, a
-	;add hl, de
-	;ld a, [hl]
-	;ld e, a
-	;ld hl, $A848
-	;add hl, de
-	;ld c, [hl]
-	;bit 7, c
+	ld a, [$A840]
+	ld hl, $650E
+	ld d, 0
+	ld e, a
+	add hl, de
+	ld a, [hl]
+	ld e, a
+	ld hl, $A848
+	add hl, de
+	ld c, [hl]
+	bit 7, c
 	jr UnknownRJump_0x3C1A2
 	;ld a, e
 	;cp $05
@@ -12374,25 +12374,6 @@ hippocheck:
     set 6, a
     ld [$a867], a
 
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
 	nop
 	nop
 	nop
