@@ -1,12 +1,13 @@
 OW_Movement_Pointers: ;$61602
+	;db $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
+	db $08, $18, $48, $48, $48, $18, $00, $00
 	db $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
 	db $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
 	db $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
 	db $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
 	db $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
 	db $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
-	db $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
-	db $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
+	db $FF, $FF, $FF, $FF, $99, $5A, $FF, $FF
 	db $A1, $5A, $AE, $5A, $B8, $5A, $FF, $FF
 	db $FF, $FF, $FF, $FF, $FF, $FF, $C3, $5A
 	db $12, $5B, $D8, $5A, $FA, $5A, $CD, $5A
@@ -25,7 +26,7 @@ OW_Movement_Pointers: ;$61602
 	db $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
 	db $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
 	db $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
-	db $7F, $5A, $40, $5A, $3A, $5C, $FF, $FF
+	db $7F, $5A, $40, $5A, $3A, $5C, $02, $56
 	db $FF, $FF, $FF, $FF, $99, $5A, $FF, $FF
 	db $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
 	db $4D, $5A, $78, $5A, $FF, $FF, $66, $5A

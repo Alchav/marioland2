@@ -1,10 +1,8 @@
-.PHONY: all compare
+.PHONY: all
 
 objects := main.o
 
-all: sml2.gb compare
-compare: baserom.gb sml2.gb
-	cmp $^
+all: sml2.gb
 
 %.o: %.asm
 	rgbasm -o $@ $<
@@ -12,3 +10,5 @@ compare: baserom.gb sml2.gb
 sml2.gb: $(objects)
 	rgblink -n ml2.sym -o $@ $^
 	rgbfix -v $@
+	c:/src/archipelago/venv/scripts/python.exe extractor.py
+	rm -f main.o

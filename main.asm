@@ -11409,7 +11409,8 @@ UnknownRJump_0x30494:
 	ld d, 0
 	ld hl, $A848
 	add hl, de
-	ld a, 128
+.Archipelago_Coin_Shuffle_1
+	ld a, $80
 	ld [hl], a
 	ld a, [$A2CB]
 	cp $05
@@ -11672,8 +11673,9 @@ INCBIN "baserom.gb", $306D1, $306E1 - $306D1
 	ld a, 187
 	ld [$FF00+$C6], a
 	ld a, [$A2CB]
+.Archipelago_Required_Golden_Coins_1
 	cp $06
-	jr nz, UnknownRJump_0x30700
+	jr c, UnknownRJump_0x30700
 	ldh_a_n $81
 	and $49
 	jr z, UnknownRJump_0x30700
@@ -12370,15 +12372,12 @@ hippocheck:
     ;ld a, [$A2B4]
     ;cp $FF
     ;ret nz
+    ld a, [$a2b4]
+    and a
+    ret z
     ld a, [$A867]
     set 6, a
     ld [$a867], a
-
-	nop
-	nop
-	nop
-	nop
-	nop
 
 UnknownRJump_0x3C1A2:
 	xor a
@@ -12536,8 +12535,10 @@ UnknownJump_0x3C316:
 	jp nz, UnknownJump_0x3C4CC
 	ld a, [$A848]
 	bit 7, a
-	jp z, UnknownJump_0x3C4CC
-
+	jp UnknownJump_0x3C4CC
+    ;ld a, $14
+    ;ld a, [$A840], a
+    ;jp $44D3 ;3c4d3
 UnknownData_0x3C325:
 INCBIN "baserom.gb", $3C325, $3C32D - $3C325
 
@@ -14446,7 +14447,7 @@ UnknownRJump_0x3D432:
 UnknownCall_0x3D43D:
 	ld a, [$A840]
 	cp $6A
-	ret nz
+	ret ;don't do this stuff
 	ld a, [$A224]
 	or a
 	jr nz, UnknownRJump_0x3D45C
@@ -17806,6 +17807,7 @@ UnknownCall_0x3EEF0:
 UnknownRJump_0x3EF19:
 	ld a, [$A2A0]
 	cp $FF
+.Archipelago_Disable_Midway_Bell_0
 	ret nz
 	set 3, [hl]
 	call UnknownCall_0x2934

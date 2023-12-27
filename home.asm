@@ -527,6 +527,7 @@ UnknownRJump_0x049C:
 	ld e, a
 	ld d, 0
 	add hl, de
+.Archipelago_Auto_Scroll_Disable_0
 	ld a, [hl] ;check level autoscroll properties
 	ld [sAutoScroll], a
 	ld a, [$A257]
@@ -543,12 +544,13 @@ UnknownRJump_0x04DD:
 	ld e, a
 	ld d, 0
 	add hl, de
-	ld a, [hl] ;check level space physics
 .Archipelago_Space_Physics_0
-	;ld [sMoonPhysics], a
-	nop
-	nop
-	nop
+    xor a
+	;ld a, [hl] ;check level space physics
+	ld [sMoonPhysics], a
+	;nop
+	;nop
+	;nop
 	ld a, [$FF00+$9B]
 	inc a
 	ld [$FF00+$9B], a
@@ -3397,7 +3399,10 @@ UnknownRJump_0x1CFB:
 	cp $58
 	jr nc, UnknownRJump_0x1D28
 	ld a, [sMoonPhysics]
-	set 1, a
+.Archipelago_Enable_Swim_0
+	nop
+	nop
+	;set 1, a
 	ld [sMoonPhysics], a
 	xor a
 	ld [$A284], a
@@ -3771,6 +3776,7 @@ LevelPropertiesUNK: ;$1F51 1 byte per level (unknown)
 	db $08, $00, $00, $00, $08, $00, $00, $08
 
 LevelPropertiesScroll: ;$1F71 1 byte per level (Auto-Scroll)
+.Archipelago_Auto_Scroll_Levels_0
 	db $00, $00, $00, $00, $00, $00, $00, $00
 	db $00, $00, $00, $00, $00, $00, $00, $00
 	db $00, $00, $00, $01, $00, $00, $00, $00
@@ -4631,7 +4637,10 @@ UnknownRJump_0x2760:
 	jr nz, UnknownRJump_0x278E
 	ld a, [$A27D]
 	bit 7, a
-	jr z, UnknownRJump_0x278E
+	; always allow start-select out
+	;jr z, UnknownRJump_0x278E
+	nop
+	nop
 	ld a, 2
 	ld [$A45E], a
 	ld [$A224], a
@@ -6338,9 +6347,7 @@ UnknownRJump_0x349D:
 	;ld a, 64
 	ld a, 0
 	ld [$A272], a
-.Archipelago_Invincibility_Star_C_1
-	;ld a, 4
-	ld a, 0
+	ld a, 4
 	ld [$A468], a
 	jp UnknownJump_0x3539
 
