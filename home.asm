@@ -32,7 +32,7 @@ SECTION "Header", ROM0[$134]
 	db $00 ;Monochrome GameBoy
 	db $00, $00 ;New Licence
 	db $00 ;No Super GameBoy
-	db $03 ;MBC1+RAM+Battery
+	db $13 ;MBC1+RAM+Battery
 	db $04 ;Rom size 512KB
 	db $02 ;Ram size 8KB
 	db $01 ;Non japanese
@@ -2236,9 +2236,11 @@ UnknownCall_0x1189:
 	sub 5
 	cp $07
 	ret nc
-	ld a, 16
+.Archipelago_Pipe_Traversal_A_1
+	ld a, 0
 	ld [sPipeTravelDirection], a
-	ld a, 5
+.Archipelago_Pipe_Traversal_SFX_A_1
+	ld a, 0
 	ld [$A460], a
 	xor a
 	ld [$A291], a
@@ -2262,7 +2264,8 @@ UnknownRJump_0x11C0:
 	sub 5
 	cp $07
 	ret nc
-	ld a, 32
+.Archipelago_Pipe_Traversal_B_1 ; UP
+	ld a, 0
 	ld [sPipeTravelDirection], a
 	ld a, [$FF00+$C0]
 	sub 2
@@ -2270,7 +2273,8 @@ UnknownRJump_0x11C0:
 	ld a, [$FF00+$C1]
 	sbc 0
 	ld [$FF00+$C1], a
-	ld a, 5
+.Archipelago_Pipe_Traversal_SFX_B_1
+	ld a, 0
 	ld [$A460], a
 	xor a
 	ld [$A291], a
@@ -2306,7 +2310,8 @@ UnknownRJump_0x120E:
 	ret nz
 
 UnknownRJump_0x1225:
-	ld a, 48
+.Archipelago_Pipe_Traversal_C_1 ;RIGHT
+	ld a, 0
 	ld [sPipeTravelDirection], a
 	xor a
 	ld [$A291], a
@@ -2317,7 +2322,8 @@ UnknownRJump_0x1225:
 	ld a, [$A2DC]
 	and a
 	ret nz
-	ld a, 5
+.Archipelago_Pipe_Traversal_SFX_C_1
+	ld a, 0
 	ld [$A460], a
 	ret
 
@@ -2333,9 +2339,11 @@ UnknownRJump_0x1244:
 	ret z
 
 UnknownRJump_0x1255:
-	ld a, 64
+.Archipelago_Pipe_Traversal_D_1
+	ld a, 0
 	ld [sPipeTravelDirection], a
-	ld a, 5
+.Archipelago_Pipe_Traversal_SFX_D_1
+	ld a, 0
 	ld [$A460], a
 	xor a
 	ld [$A291], a
@@ -4868,6 +4876,7 @@ UnknownRJump_0x2917:
 	ld [hli], a
 	ld [hli], a
 	ld [hli], a
+.Archipelago_Starting_Lives_1
 	ld a, 5
 	ld [hli], a
 	xor a

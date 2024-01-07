@@ -12584,10 +12584,14 @@ INCBIN "baserom.gb", $3C364, $3C38C - $3C364
 
 
 UnknownCall_0x3C38C:
+	ld a, $20
+	ld hl, WorldMapSpotSwitches
+	jp UnknownCall_0x3E00
+WorldMapJumpBack::
 	ei
-	ld a, [$A840]
-	cp $14
-	call z, UnknownCall_0x3C2AC
+	;ld a, [$A840]
+	;cp $14
+	;call z, UnknownCall_0x3C2AC
 	ld a, [$A840]
 	cp $35
 	call z, UnknownCall_0x3C2B8
@@ -14136,12 +14140,15 @@ UnknownCall_0x3D18E:
 	ld a, 106
 	ld [$A6D2], a
 
-UnknownRJump_0x3D1A4:
+UnknownRJump_0x3D1A4: ; TREE ZONE 2 SECRET EXIT
 	ld a, 37
-	ld [$A840], a
+	;ld [$A840], a
+	nop
+	nop
+	nop
 	call UnknownCall_0x3EEA4
 	ld a, [$A84A]
-	set 0, a
+	set 1, a
 	ld [$A84A], a
 	ret
 
@@ -14150,7 +14157,10 @@ UnknownCall_0x3D1B5:
 	cp $26
 	ret nz
 	ld a, 39
-	ld [$A840], a
+	;ld [$A840], a
+	nop
+	nop
+	nop
 	call UnknownCall_0x3EEA4
 	ld a, 255
 	ld [$A224], a
@@ -14266,9 +14276,12 @@ UnknownCall_0x3D29F:
 	ld [$A840], a
 	call UnknownCall_0x3EEA4
 	ld a, [$A84F]
-	bit 0, a
-	ret nz
-	set 0, a
+	;bit 0, a
+	;ret nz
+	nop
+	nop
+	nop
+	set 1, a
 	ld [$A84F], a
 	ld a, 255
 	ld [$A7BA], a
@@ -14282,12 +14295,18 @@ UnknownRJump_0x3D2D5:
 	ld [$A7D5], a
 	call UnknownCall_0x3F8E
 	ld a, 47
-	ld [$A840], a
+	;ld [$A840], a
+	nop
+	nop
+	nop
 	call UnknownCall_0x3EEA4
 	ld a, [$A850]
-	bit 0, a
-	ret nz
-	set 0, a
+	;bit 0, a
+	;ret nz
+	nop
+	nop
+	nop
+	set 1, a
 	ld [$A850], a
 	ld a, 255
 	ld [$A7BA], a
@@ -14427,18 +14446,20 @@ UnknownCall_0x3D409:
 	ld a, 16
 	ld [$A7D2], a
 	ld a, 107
-	ld [$A840], a
+	;ld [$A840], a
+	nop
+	nop
+	nop
 	call UnknownCall_0x3EEA4
 	ld a, [$A853]
 	bit 0, a
 	jr z, UnknownRJump_0x3D432
-
-UnknownData_0x3D42D:
-INCBIN "baserom.gb", $3D42D, $3D432 - $3D42D
-
+    xor a
+    ld [$A7BA], a
+    ret
 
 UnknownRJump_0x3D432:
-	set 0, a
+	set 1, a
 	ld [$A853], a
 	ld a, 255
 	ld [$A7BA], a
@@ -14556,7 +14577,10 @@ UnknownCall_0x3D533:
 	ld a, 47
 	ld [$A7D2], a
 	ld a, 67
-	ld [$A840], a
+	;ld [$A840], a
+	nop
+	nop
+	nop
 	call UnknownCall_0x3EEA4
 	ld a, [$A858]
 	bit 0, a
@@ -14571,7 +14595,7 @@ UnknownCall_0x3D533:
 	ld a, e
 
 UnknownRJump_0x3D562:
-	set 0, a
+	set 1, a
 	ld [$A858], a
 	call UnknownCall_0x3F8E
 	ret
@@ -14581,7 +14605,10 @@ UnknownCall_0x3D56B:
 	cp $44
 	ret nz
 	ld a, 69
-	ld [$A840], a
+	;ld [$A840], a
+	nop
+	nop
+	nop
 	call UnknownCall_0x3EEA4
 	ld a, 255
 	ld [$A224], a
@@ -14716,9 +14743,12 @@ UnknownCall_0x3D69C:
 	or a
 	ret nz
 	ld a, [$A85E]
-	bit 0, a
-	ret nz
-	set 0, a
+	;bit 0, a
+	;ret nz
+	nop
+	nop
+	nop
+	set 1, a
 	ld [$A85E], a
 	ld a, 125
 	ld [$A6D5], a
@@ -17855,7 +17885,10 @@ UnknownRJump_0x3EF56:
 	cp $48
 	jr nz, UnknownRJump_0x3EF70
 	ld a, 71
-	ld [$A840], a
+	;ld [$A840], a
+	nop
+	nop
+	nop
 	jr UnknownRJump_0x3EFB2
 
 UnknownRJump_0x3EF70:
@@ -17881,12 +17914,15 @@ UnknownRJump_0x3EF88:
 	ld [$A840], a
 	jr UnknownRJump_0x3EFB2
 
-UnknownRJump_0x3EF96:
+UnknownRJump_0x3EF96: ; beat pumpkin zone 3 secret exit
 	ld a, [$A840]
 	cp $2A
 	jr nz, UnknownRJump_0x3EFA4
 	ld a, 47
-	ld [$A840], a
+	;ld [$A840], a
+	nop
+	nop
+	nop
 	jr UnknownRJump_0x3EFB2
 
 UnknownRJump_0x3EFA4:
@@ -17894,7 +17930,10 @@ UnknownRJump_0x3EFA4:
 	cp $3C
 	jr nz, UnknownRJump_0x3EFB2
 	ld a, 64
-	ld [$A840], a
+	;ld [$A840], a
+	nop
+	nop
+	nop
 	jr UnknownRJump_0x3EFB2
 
 UnknownRJump_0x3EFB2:
@@ -18052,7 +18091,10 @@ UnknownRJump_0x3F0C2:
 	cp $66
 	jr nz, UnknownRJump_0x3F0E4
 	ld a, 104
-	ld [$A840], a
+	;ld [$A840], a
+	nop
+	nop
+	nop
 	call UnknownCall_0x3EEA4
 	ld a, [$A224]
 	or a
@@ -29781,3 +29823,181 @@ GFX_EnemiesPumpkinZoneBoss: ;$7EC00
 INCBIN "gfx/enemies/pumpkinzoneboss.2bpp"
 
 INCBIN "baserom.gb", $7EF80, $80000 - $7EF80
+
+SECTION "bank20", ROMX, BANK[$20]
+
+WorldMapSpotSwitches::
+
+    ld a, [$A840]
+    cp $22
+    call z, TreeZoneSecret
+    ld a, [$A840]
+    cp $26
+    call z, TreeZoneSecretReturn
+    ld a, [$A840]
+    cp $48
+    call z, TurtleZoneSecret
+    ld a, [$A840]
+    cp $66
+    call z, TurtleZoneSecretReturn
+    ld a, [$A840]
+    cp $29
+    call z, PumpkinZoneSecret1
+    ld a, [$A840]
+    cp $78
+    call z, PumpkinZoneSecret1Return
+    ld a, [$A840]
+    cp $2A
+    call z, PumpkinZoneSecret2
+    ld a, [$A840]
+    cp $7A
+    call z, PumpkinZoneSecret2Return
+    ld a, [$A840]
+    cp $3C
+    call z, SpaceZoneSecret
+    ld a, [$A840]
+    cp $44
+    call z, SpaceZoneSecretReturn
+    ld a, $0f
+    ld hl, WorldMapJumpBack
+    jp UnknownCall_0x3E00
+
+;7: down
+;6: up
+;5: left
+;4: right
+
+TreeZoneSecret:
+	ldh_a_n $81
+	bit 4, a
+	ret z
+	ld a, [$A84A]
+	bit 0, a
+	ret z
+	ld a, 37
+	ld [$A840], a
+	;ld a, 64
+	;ldh_n_a $81
+	ret
+
+TreeZoneSecretReturn:
+	ldh_a_n $81
+	bit 5, a
+	ret z
+	ld a, $27
+	ld [$A840], a
+	;ld a, 64
+	;ldh_n_a $81
+	ret
+
+
+
+TurtleZoneSecret:
+	ldh_a_n $81
+	bit 6, a
+	ret z
+	ld a, [$A85E]
+	bit 0, a
+	ret z
+	ld a, $47
+	ld [$A840], a
+	;ld a, 64
+	;ldh_n_a $81
+	ret
+
+TurtleZoneSecretReturn:
+	ldh_a_n $81
+	bit 7, a
+	ret z
+	ld a, $68
+	ld [$A840], a
+	;ld a, 64
+	;ldh_n_a $81
+	ret
+
+
+
+PumpkinZoneSecret1:
+	ldh_a_n $81
+	bit 4, a
+	ret z
+	ld a, [$A84F]
+	bit 0, a
+	ret z
+	ld a, $2C
+	ld [$A840], a
+	ld a, $84
+	ld [$A842], a
+	ld a, $5C
+	ld [$A843], a
+	;ld a, 64
+	;ldh_n_a $81
+	ret
+
+PumpkinZoneSecret1Return:
+	ldh_a_n $81
+	bit 6, a
+	ret z
+	ld a, $2E
+	ld [$A840], a
+	;ld a, 64
+	;ldh_n_a $81
+    ld a, $0f
+    ld hl, UnknownRJump_0x3EFB2
+    jp UnknownCall_0x3E00
+	ret
+
+
+
+PumpkinZoneSecret2:
+	ldh_a_n $81
+	bit 5, a
+	ret z
+	ld a, [$A850]
+	bit 0, a
+	ret z
+	ld a, $2F
+	ld [$A840], a
+	ld a, $1C
+	ld [$A842], a
+	ld a, $2C
+	ld [$A843], a
+	;ld a, 64
+	;ldh_n_a $81
+	ret
+
+PumpkinZoneSecret2Return:
+	ldh_a_n $81
+	bit 7, a
+	ret z
+	ld a, $31
+	ld [$A840], a
+	;ld a, 64
+	;ldh_n_a $81
+    ld a, $0f
+    ld hl, UnknownRJump_0x3EFB2
+    jp UnknownCall_0x3E00
+	ret
+
+SpaceZoneSecret:
+	ldh_a_n $81
+	bit 4, a
+	ret z
+	ld a, [$A858]
+	bit 0, a
+	ret z
+	ld a, $43
+	ld [$a840], a
+	;ld a, 64
+	;ldh_n_a $81
+	ret
+
+SpaceZoneSecretReturn:
+	ldh_a_n $81
+	bit 5, a
+	ret z
+	ld a, $45
+	ld [$A840], a
+	;ld a, 64
+	;ldh_n_a $81
+	ret
