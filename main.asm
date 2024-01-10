@@ -14289,7 +14289,7 @@ UnknownCall_0x3D29F:
 
 UnknownRJump_0x3D2D5:
 	ld a, [$A840]
-	cp $2F
+	cp $2A
 	ret nz
 	ld a, 39
 	ld [$A7D5], a
@@ -17911,7 +17911,10 @@ UnknownRJump_0x3EF88:
 	cp $29
 	jr nz, UnknownRJump_0x3EF96
 	ld a, 44
-	ld [$A840], a
+	;ld [$A840], a
+	nop
+	nop
+	nop
 	jr UnknownRJump_0x3EFB2
 
 UnknownRJump_0x3EF96: ; beat pumpkin zone 3 secret exit
