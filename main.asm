@@ -14453,7 +14453,7 @@ UnknownCall_0x3D409:
 	call UnknownCall_0x3EEA4
 	ld a, [$A853]
 	bit 0, a
-	jr z, UnknownRJump_0x3D432
+	jr UnknownRJump_0x3D432
     xor a
     ld [$A7BA], a
     ret
