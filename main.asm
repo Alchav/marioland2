@@ -501,10 +501,11 @@ UnknownJump_0x5550:
 	jp UnknownJump_0x54C8
 
 UnknownJump_0x5579:
-	xor a
-	ld [$A2A0], a
-	ld a, [$A27D]
-	bit 3, a
+	ld a, $20
+	ld hl, MidwayBellCheck
+	jp UnknownCall_0x3E00
+	nop
+MidwayBellCheckReturn:
 	jr z, UnknownRJump_0x5589
 	ld a, 255
 	ld [$A2A0], a
@@ -531,19 +532,29 @@ UnknownRJump_0x559F:
 	inc de
 	dec b
 	jr nz, UnknownRJump_0x559F
+
 	ld a, [$A2A0]
 	and a
 	jr z, UnknownRJump_0x55C6
-	ld hl, $377B
-	ld a, [sCurLevel]
-	sla a
-	sla a
-	sla a
-	ld e, a
-	ld d, 0
-	add hl, de
-	ld de, $A800
-	ld b, 8
+	ld a, $20
+	ld hl, LoadMidwayBellData
+	jp UnknownCall_0x3E00
+LoadMidwayBellDataReturn:
+	pop hl
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+
+
 
 UnknownRJump_0x55C0:
 	ld a, [hli]
@@ -562,6 +573,7 @@ INCLUDE "levels/levelheaders.asm"
 INCBIN "baserom.gb", $588B, $591F - $588B
 
 UnknownJump_0x591F:
+.Archipelago_Coinsanity_A_0
 	ld a, [sCoinLow]
 	inc a
 	daa
@@ -14267,13 +14279,16 @@ UnknownCall_0x3D29F:
 	or a
 	ret nz
 	ld a, [$A840]
-	cp $2C
+	cp $29
 	jr nz, UnknownRJump_0x3D2D5
 	ld a, 31
 	ld [$A7D2], a
 	call UnknownCall_0x3F8E
 	ld a, 44
-	ld [$A840], a
+	;ld [$A840], a
+	nop
+	nop
+	nop
 	call UnknownCall_0x3EEA4
 	ld a, [$A84F]
 	;bit 0, a
@@ -30004,3 +30019,67 @@ SpaceZoneSecretReturn:
 	;ld a, 64
 	;ldh_n_a $81
 	ret
+
+MidwayBellCheck:
+	xor a
+	ld [$A2A0], a
+	;ld a, [sCurLevel]
+	;cp 255
+	;jr nz, .notCastle
+	;ld a, [$A860]
+	;ld [$A27D], a
+;.notCastle
+	ld a, [hKeysHeld]
+	bit 2, a
+	jr nz, .skip
+	ld a, [$A27D]
+	bit 3, a
+	jr .ye
+.skip
+    xor a
+.ye
+	ld a, $01
+	ld hl, MidwayBellCheckReturn
+	jp UnknownCall_0x3E00
+
+.Archipelago_Coins_Required_0
+    db $00, $00
+.Archipelago_Difficulty_Mode_0
+    db $00
+.Archipelago_Star_Count_0
+    db $00, $00
+.Archipelago_Midway_Bells_0
+    db $00
+.Archipelago_Energy_Link_0
+    db $00
+.Archipelago_Coin_Mode_0
+    db $00
+.Archipelago_Auto_Scroll_Levels_B_0
+    db $00, $00, $00, $00, $00, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00
+    db $00, $00, $00, $01, $00, $00, $00, $00
+    db $00, $01, $00, $00, $00, $00, $01, $00
+
+LoadMidwayBellData:
+    ld hl, $377B
+	ld a, [sCurLevel]
+	cp 255
+	jr nz, .notCastle
+	ld a, 24
+.notCastle
+	sla a
+	sla a
+	sla a
+	ld e, a
+	ld d, 0
+	add hl, de
+	ld de, $A800
+	ld b, 8
+    push hl
+	ld a, $01
+	ld hl, LoadMidwayBellDataReturn
+	jp UnknownCall_0x3E00
+
+
+
+

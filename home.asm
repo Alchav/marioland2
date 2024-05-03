@@ -527,7 +527,7 @@ UnknownRJump_0x049C:
 	ld e, a
 	ld d, 0
 	add hl, de
-.Archipelago_Auto_Scroll_Disable_0
+;.Archipelago_Auto_Scroll_Disable_0
 	ld a, [hl] ;check level autoscroll properties
 	ld [sAutoScroll], a
 	ld a, [$A257]
@@ -3472,6 +3472,7 @@ UnknownCall_0x1D75:
 	ld a, 7
 	ld [$A460], a
 	call UnknownCall_0x1DA5
+.Archipelago_Coinsanity_B_0
 	ld a, [sCoinLow]
 	inc a
 	daa
@@ -3482,9 +3483,12 @@ UnknownCall_0x1D75:
 	cp $0A
 	jr c, UnknownRJump_0x1DA4
 
-UnknownData_0x1D9A:
-INCBIN "baserom.gb", $1D9A, $1DA4 - $1D9A
-
+;UnknownData_0x1D9A:
+;INCBIN "baserom.gb", $1D9A, $1DA4 - $1D9A
+    ld a, $99
+    ld [$a262], a
+    ld a, $09
+    ld [$a263], a
 
 UnknownRJump_0x1DA4:
 	ret
@@ -6575,6 +6579,7 @@ UnknownCall_0x3753:
 	ld [$A2BB], a
 	ret
 
+; COORDS FOR MIDWAY BELL
 UnknownData_0x377B:
 INCBIN "baserom.gb", $377B, $3873 - $377B
 
